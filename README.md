@@ -2,10 +2,13 @@
 
 In this repository I am making available the codes developed for my undergraduate thesis entitled "State estimation in the National Interconnected System: an approach considering SCADA and PMU measurements" as a requirement to obtain a bachelorette degree as electrical engineer.
 
-State Estimation code using pandapower library for power system analysis considering a 107-bus test system which represents the brazilian national electrical grid (SIN).
+State estimation is a method that provides an estimate of the operational state of a given real system, based on input measurements and the output of the real system.
 
-State Estimation is 
-First of all we should 
+All codes were implemented in python library pandapower, developed for power system analysis and considering a 107-bus test system that represents brazilian electrical network (SIN). The single line diagram of the 107-bus system can be seen in the image attached below.
+
+[107 barras.pdf](https://github.com/estebana7/State-Estimation-107/files/10757964/107.barras.pdf)
+
+In order to understand
 
 ## Power Flow
 
