@@ -4,6 +4,12 @@ import pandapower as pp
 from pandapower.estimation import estimate
 
 #%% Criação de erros aleatórios
+
+#desvios padrão das medidas
+std_Tensao = 0.004
+std_PQ = 0.010
+std_PkmQkm = 0.008
+
 #criando erros SCADA
 scada_aleatorio = []
 for i in range(0, 322):
@@ -12,14 +18,12 @@ for i in range(0, 322):
 
 #criando erros PMU
 pmu_aleatorio = []
-for i in range(0, 244):
+for i in range(0, 43):
     aleat_pmu = (np.random.rand(1)*(1.001 - 0.999) + 0.999) #criando erros de +-0.1% (PMU)
     pmu_aleatorio.append(aleat_pmu)
 
-#%% Criação de Medições
+#%% Criação de Medições SCADA
 #medidas de tensão nas barras
-
-std_Tensao = 0.004
 
 eeV1 = pp.create_measurement(cnc1.netc1, "v", "bus",cnc1.netc1.res_bus.vm_pu[1]*scada_aleatorio[1], std_Tensao, element = cnc1.b1)
 eeV2 = pp.create_measurement(cnc1.netc1, "v", "bus",cnc1.netc1.res_bus.vm_pu[2]*scada_aleatorio[2], std_Tensao, element = cnc1.b2)
@@ -132,8 +136,6 @@ eeV107 = pp.create_measurement(cnc1.netc1, "v", "bus",cnc1.netc1.res_bus.vm_pu[1
 cnc1.netc1.measurement
 
 #medidas de potência ativa e reativa nas barras
-
-std_PQ = 0.010
 
 eeP1 = pp.create_measurement(cnc1.netc1, "p", "bus",cnc1.netc1.res_bus.p_mw[1]*scada_aleatorio[108], std_PQ, element = cnc1.b1)
 eeP2 = pp.create_measurement(cnc1.netc1, "p", "bus",cnc1.netc1.res_bus.p_mw[2]*scada_aleatorio[109], std_PQ, element = cnc1.b2)
@@ -352,6 +354,66 @@ eeQ106 = pp.create_measurement(cnc1.netc1, "q", "bus",cnc1.netc1.res_bus.q_mvar[
 eeQ107 = pp.create_measurement(cnc1.netc1, "q", "bus",cnc1.netc1.res_bus.q_mvar[107]*scada_aleatorio[321], std_PQ, element = cnc1.b107)
 
 cnc1.netc1.measurement
+
+#%% Criação de Medições PMU - Não tem no primeiro caso
+#medidas de tensão nas barras
+
+# eeV34pmu = pp.create_measurement(cnc1.netc1, "v", "bus", cnc1.netc1.res_bus.vm_pu[34]*pmu_aleatorio[1], std_Tensao, element = cnc1.b34)
+# eeV36pmu = pp.create_measurement(cnc1.netc1, "v", "bus", cnc1.netc1.res_bus.vm_pu[36]*pmu_aleatorio[2], std_Tensao, element = cnc1.b36)
+# eeV85pmu = pp.create_measurement(cnc1.netc1, "v", "bus", cnc1.netc1.res_bus.vm_pu[85]*pmu_aleatorio[3], std_Tensao, element = cnc1.b85)
+# eeV86pmu = pp.create_measurement(cnc1.netc1, "v", "bus", cnc1.netc1.res_bus.vm_pu[86]*pmu_aleatorio[4], std_Tensao, element = cnc1.b86)
+
+# cnc1.netc1.measurement
+
+# #medidas de potência ativa e reativa nas barras
+
+# eeP34pmu = pp.create_measurement(cnc1.netc1, "p", "bus", cnc1.netc1.res_bus.p_mw[34]*pmu_aleatorio[5], std_PQ, element = cnc1.b34)
+# eeP36pmu = pp.create_measurement(cnc1.netc1, "p", "bus", cnc1.netc1.res_bus.p_mw[36]*pmu_aleatorio[6], std_PQ, element = cnc1.b36)
+# eeP85pmu = pp.create_measurement(cnc1.netc1, "p", "bus", cnc1.netc1.res_bus.p_mw[85]*pmu_aleatorio[7], std_PQ, element = cnc1.b85)
+# eeP86pmu = pp.create_measurement(cnc1.netc1, "p", "bus", cnc1.netc1.res_bus.p_mw[86]*pmu_aleatorio[8], std_PQ, element = cnc1.b86)
+
+# eeQ34pmu = pp.create_measurement(cnc1.netc1, "q", "bus", cnc1.netc1.res_bus.q_mvar[34]*pmu_aleatorio[9], std_PQ, element = cnc1.b34)
+# eeQ36pmu = pp.create_measurement(cnc1.netc1, "q", "bus", cnc1.netc1.res_bus.q_mvar[36]*pmu_aleatorio[10], std_PQ, element = cnc1.b36)
+# eeQ85pmu = pp.create_measurement(cnc1.netc1, "q", "bus", cnc1.netc1.res_bus.q_mvar[85]*pmu_aleatorio[11], std_PQ, element = cnc1.b85)
+# eeQ86pmu = pp.create_measurement(cnc1.netc1, "q", "bus", cnc1.netc1.res_bus.q_mvar[86]*pmu_aleatorio[12], std_PQ, element = cnc1.b86)
+
+# cnc1.netc1.measurement
+
+# #medidas de fluxo de potência ativa e reativa passantes nas linhas
+
+# eePkm10 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[10]*pmu_aleatorio[13], std_PkmQkm, element = cnc1.l10, side = cnc1.b36)
+# eePkm28 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[28]*pmu_aleatorio[14], std_PkmQkm, element = cnc1.l28, side = cnc1.b36)
+# eePkm29 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[29]*pmu_aleatorio[15], std_PkmQkm, element = cnc1.l29, side = cnc1.b36)
+# eePkm32 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[32]*pmu_aleatorio[16], std_PkmQkm, element = cnc1.l32, side = cnc1.b34)
+# eePkm40 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[40]*pmu_aleatorio[17], std_PkmQkm, element = cnc1.l40, side = cnc1.b34)
+# eePkm78 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[78]*pmu_aleatorio[18], std_PkmQkm, element = cnc1.l78, side = cnc1.b85)
+# eePkm79 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[79]*pmu_aleatorio[19], std_PkmQkm, element = cnc1.l79, side = cnc1.b85)
+# eePkm80 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[80]*pmu_aleatorio[20], std_PkmQkm, element = cnc1.l80, side = cnc1.b86)
+# eePkm81 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[81]*pmu_aleatorio[21], std_PkmQkm, element = cnc1.l81, side = cnc1.b86)
+# eePkm106 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[106]*pmu_aleatorio[31], std_PkmQkm, element = cnc1.l106, side = cnc1.b36)
+# eePkm107 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[107]*pmu_aleatorio[32], std_PkmQkm, element = cnc1.l107, side = cnc1.b36)
+# eePkm121 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[121]*pmu_aleatorio[33], std_PkmQkm, element = cnc1.l121, side = cnc1.b85)
+# eePkm122 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[122]*pmu_aleatorio[34], std_PkmQkm, element = cnc1.l122, side = cnc1.b85)
+# eePkm136 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[136]*pmu_aleatorio[35], std_PkmQkm, element = cnc1.l136, side = cnc1.b34)
+# eePkm137 = pp.create_measurement(cnc1.netc1, "p", "line", cnc1.netc1.res_line.p_from_mw[137]*pmu_aleatorio[36], std_PkmQkm, element = cnc1.l137, side = cnc1.b34)
+
+# eeQkm10 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[10]*pmu_aleatorio[22], std_PkmQkm, element = cnc1.l10, side = cnc1.b36)
+# eeQkm28 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[28]*pmu_aleatorio[23], std_PkmQkm, element = cnc1.l28, side = cnc1.b36)
+# eeQkm29 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[29]*pmu_aleatorio[24], std_PkmQkm, element = cnc1.l29, side = cnc1.b36)
+# eeQkm32 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[32]*pmu_aleatorio[25], std_PkmQkm, element = cnc1.l32, side = cnc1.b34)
+# eeQkm40 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[40]*pmu_aleatorio[26], std_PkmQkm, element = cnc1.l40, side = cnc1.b34)
+# eeQkm78 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[78]*pmu_aleatorio[27], std_PkmQkm, element = cnc1.l78, side = cnc1.b85)
+# eeQkm79 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[79]*pmu_aleatorio[28], std_PkmQkm, element = cnc1.l79, side = cnc1.b85)
+# eeQkm80 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[80]*pmu_aleatorio[29], std_PkmQkm, element = cnc1.l80, side = cnc1.b86)
+# eeQkm81 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[81]*pmu_aleatorio[30], std_PkmQkm, element = cnc1.l81, side = cnc1.b86)
+# eeQkm106 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[106]*pmu_aleatorio[37], std_PkmQkm, element = cnc1.l106, side = cnc1.b36)
+# eeQkm107 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[107]*pmu_aleatorio[38], std_PkmQkm, element = cnc1.l107, side = cnc1.b36)
+# eeQkm121 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[121]*pmu_aleatorio[39], std_PkmQkm, element = cnc1.l121, side = cnc1.b85)
+# eeQkm122 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[122]*pmu_aleatorio[40], std_PkmQkm, element = cnc1.l122, side = cnc1.b85)
+# eeQkm136 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[136]*pmu_aleatorio[41], std_PkmQkm, element = cnc1.l136, side = cnc1.b34)
+# eeQkm137 = pp.create_measurement(cnc1.netc1, "q", "line", cnc1.netc1.res_line.q_from_mvar[137]*pmu_aleatorio[42], std_PkmQkm, element = cnc1.l137, side = cnc1.b34)
+
+# cnc1.netc1.measurement
 
 #%% Checar sucesso da estimação
 

@@ -1,11 +1,7 @@
 import pandapower as pp
-# from pandapower.estimation import estimate
-# import matplotlib.pyplot as plt
-# import numpy as np
 
 netc1 = pp.create_empty_network()
 
-#================================================================================================
 #%% Criação de Barras
 
 b1 = pp.create_bus(netc1, vn_kv = 1.001, min_vm_pu = 0.95, max_vm_pu = 1.05, index = 1)
@@ -116,8 +112,6 @@ b105 = pp.create_bus(netc1, vn_kv = 1.025, min_vm_pu = 0.95, max_vm_pu = 1.05, i
 b106 = pp.create_bus(netc1, vn_kv = 1.025, min_vm_pu = 0.95, max_vm_pu = 1.05, index = 106)
 b107 = pp.create_bus(netc1, vn_kv = 1, min_vm_pu = 0.95, max_vm_pu = 1.05, index = 107)
 
-
-#================================================================================================
 #%% Criação de Linhas
 
 l1 = pp.create_line_from_parameters(netc1, from_bus = b44, to_bus = b43, length_km = 0.001, r_ohm_per_km = 0.00172, x_ohm_per_km = 0.0272, c_nf_per_km = 0.0, max_i_ka = 142, index = 1)
@@ -129,7 +123,7 @@ l6 = pp.create_line_from_parameters(netc1, from_bus = b43, to_bus = b37, length_
 l7 = pp.create_line_from_parameters(netc1, from_bus = b42, to_bus = b40, length_km = 0.001, r_ohm_per_km = 0.0011, x_ohm_per_km = 0.0191, c_nf_per_km = 0.0, max_i_ka = 142, index = 7)
 l8 = pp.create_line_from_parameters(netc1, from_bus = b37, to_bus = b38, length_km = 0.001, r_ohm_per_km = 0.00196, x_ohm_per_km = 0.031, c_nf_per_km = 0.0, max_i_ka = 142, index = 8)
 l9 = pp.create_line_from_parameters(netc1, from_bus = b38, to_bus = b40, length_km = 0.001, r_ohm_per_km = 0.0005, x_ohm_per_km = 0.0082, c_nf_per_km = 0.0, max_i_ka = 142, index = 9)
-l10 = pp.create_line_from_parameters(netc1, from_bus = b37, to_bus = b36, length_km = 0.001, r_ohm_per_km = 0.00105, x_ohm_per_km = 0.01619, c_nf_per_km = 0.0, max_i_ka = 142, index = 10)
+l10 = pp.create_line_from_parameters(netc1, from_bus = b36, to_bus = b37, length_km = 0.001, r_ohm_per_km = 0.00105, x_ohm_per_km = 0.01619, c_nf_per_km = 0.0, max_i_ka = 142, index = 10)
 l11 = pp.create_line_from_parameters(netc1, from_bus = b59, to_bus = b50, length_km = 0.001, r_ohm_per_km = 0.00147, x_ohm_per_km = 0.0232, c_nf_per_km = 0.0, max_i_ka = 142, index = 11)
 l12 = pp.create_line_from_parameters(netc1, from_bus = b59, to_bus = b57, length_km = 0.001, r_ohm_per_km = 0.0028, x_ohm_per_km = 0.0399, c_nf_per_km = 0.0, max_i_ka = 142, index = 12)
 l13 = pp.create_line_from_parameters(netc1, from_bus = b57, to_bus = b56, length_km = 0.001, r_ohm_per_km = 0.0027, x_ohm_per_km = 0.0387, c_nf_per_km = 0.0, max_i_ka = 142, index = 13)
@@ -151,7 +145,7 @@ l28 = pp.create_line_from_parameters(netc1, from_bus = b36, to_bus = b34, length
 l29 = pp.create_line_from_parameters(netc1, from_bus = b36, to_bus = b34, length_km = 0.001, r_ohm_per_km = 0.00308, x_ohm_per_km = 0.03958, c_nf_per_km = 0.0, max_i_ka = 142, index = 29)
 l30 = pp.create_line_from_parameters(netc1, from_bus = b2, to_bus = b3, length_km = 0.001, r_ohm_per_km = 0.0005, x_ohm_per_km = 0.0073, c_nf_per_km = 0.0, max_i_ka = 142, index = 30)
 l31 = pp.create_line_from_parameters(netc1, from_bus = b15, to_bus = b13, length_km = 0.001, r_ohm_per_km = 0.0015, x_ohm_per_km = 0.0089, c_nf_per_km = 0.0, max_i_ka = 142, index = 31)
-l32 = pp.create_line_from_parameters(netc1, from_bus = b9, to_bus = b34, length_km = 0.001, r_ohm_per_km = 0.002, x_ohm_per_km = 0.0255, c_nf_per_km = 0.0, max_i_ka = 142, index = 32)
+l32 = pp.create_line_from_parameters(netc1, from_bus = b34, to_bus = b9, length_km = 0.001, r_ohm_per_km = 0.002, x_ohm_per_km = 0.0255, c_nf_per_km = 0.0, max_i_ka = 142, index = 32)
 l33 = pp.create_line_from_parameters(netc1, from_bus = b9, to_bus = b25, length_km = 0.001, r_ohm_per_km = 0.00162, x_ohm_per_km = 0.02048, c_nf_per_km = 0.0, max_i_ka = 142, index = 33)
 l34 = pp.create_line_from_parameters(netc1, from_bus = b9, to_bus = b31, length_km = 0.001, r_ohm_per_km = 0.002, x_ohm_per_km = 0.0269, c_nf_per_km = 0.0, max_i_ka = 142, index = 34)
 l35 = pp.create_line_from_parameters(netc1, from_bus = b12, to_bus = b13, length_km = 0.001, r_ohm_per_km = 0.03045, x_ohm_per_km = 0.15738, c_nf_per_km = 0.0, max_i_ka = 142, index = 35)
@@ -159,7 +153,7 @@ l36 = pp.create_line_from_parameters(netc1, from_bus = b12, to_bus = b13, length
 l37 = pp.create_line_from_parameters(netc1, from_bus = b28, to_bus = b25, length_km = 0.001, r_ohm_per_km = 0.002556, x_ohm_per_km = 0.029224, c_nf_per_km = 0.0, max_i_ka = 142, index = 37)
 l38 = pp.create_line_from_parameters(netc1, from_bus = b28, to_bus = b31, length_km = 0.001, r_ohm_per_km = 0.00127, x_ohm_per_km = 0.01603, c_nf_per_km = 0.0, max_i_ka = 142, index = 38)
 l39 = pp.create_line_from_parameters(netc1, from_bus = b25, to_bus = b23, length_km = 0.001, r_ohm_per_km = 0.001877, x_ohm_per_km = 0.023467, c_nf_per_km = 0.0, max_i_ka = 142, index = 39)
-l40 = pp.create_line_from_parameters(netc1, from_bus = b31, to_bus = b34, length_km = 0.001, r_ohm_per_km = 0.0005, x_ohm_per_km = 0.0044, c_nf_per_km = 0.0, max_i_ka = 142, index = 40)
+l40 = pp.create_line_from_parameters(netc1, from_bus = b34, to_bus = b31, length_km = 0.001, r_ohm_per_km = 0.0005, x_ohm_per_km = 0.0044, c_nf_per_km = 0.0, max_i_ka = 142, index = 40)
 l41 = pp.create_line_from_parameters(netc1, from_bus = b23, to_bus = b21, length_km = 0.001, r_ohm_per_km = 0.000733, x_ohm_per_km = 0.009164, c_nf_per_km = 0.0, max_i_ka = 142, index = 41)
 l42 = pp.create_line_from_parameters(netc1, from_bus = b21, to_bus = b19, length_km = 0.001, r_ohm_per_km = 0.00282, x_ohm_per_km = 0.03852, c_nf_per_km = 0.0, max_i_ka = 142, index = 42)
 l43 = pp.create_line_from_parameters(netc1, from_bus = b19, to_bus = b23, length_km = 0.001, r_ohm_per_km = 0.001643, x_ohm_per_km = 0.030339, c_nf_per_km = 0.0, max_i_ka = 142, index = 43)
@@ -225,10 +219,7 @@ l102 = pp.create_line_from_parameters(netc1, from_bus = b106, to_bus = b105, len
 l103 = pp.create_line_from_parameters(netc1, from_bus = b93, to_bus = b91, length_km = 0.001, r_ohm_per_km = 0.0257, x_ohm_per_km = 0.2368, c_nf_per_km = 0.0, max_i_ka = 142, index = 103)
 l104 = pp.create_line_from_parameters(netc1, from_bus = b93, to_bus = b91, length_km = 0.001, r_ohm_per_km = 0.0257, x_ohm_per_km = 0.2368, c_nf_per_km = 0.0, max_i_ka = 142, index = 104)
 
-
-#================================================================================================
-##% Criação de Transformadores (linhas)
-
+#%% Criação de Transformadores (linhas)
 
 l105 = pp.create_line_from_parameters(netc1, from_bus = b60, to_bus = b61, length_km = 0.001, r_ohm_per_km = 0, x_ohm_per_km = 0.002859, c_nf_per_km = 0.0, max_i_ka = 142, index = 105)
 l106 = pp.create_line_from_parameters(netc1, from_bus = b36, to_bus = b60, length_km = 0.001, r_ohm_per_km = 0, x_ohm_per_km = 0.001913, c_nf_per_km = 0.0, max_i_ka = 142, index = 106)
@@ -298,8 +289,6 @@ l169 = pp.create_line_from_parameters(netc1, from_bus = b95, to_bus = b96, lengt
 l170 = pp.create_line_from_parameters(netc1, from_bus = b106, to_bus = b107, length_km = 0.001, r_ohm_per_km = 0, x_ohm_per_km = 0.026667, c_nf_per_km = 0.0, max_i_ka = 142, index = 170)
 l171 = pp.create_line_from_parameters(netc1, from_bus = b93, to_bus = b105, length_km = 0.001, r_ohm_per_km = 0, x_ohm_per_km = 0.00405, c_nf_per_km = 0.0, max_i_ka = 142, index = 171)
 
-
-#================================================================================================
 #%% Criação de Cargas
 
 fator=1.0 #
@@ -344,8 +333,6 @@ c37 = pp.create_load(netc1, bus = b98, p_mw = 18*fator, q_mvar = 6.4*fator)
 c38 = pp.create_load(netc1, bus = b99, p_mw = 23.8*fator, q_mvar = 7.4*fator)
 c39 = pp.create_load(netc1, bus = b100, p_mw = 65.5*fator, q_mvar = 16.7*fator)
 
-
-#================================================================================================
 #%% Criação de Geradores
 
 g1 = pp.create_gen(netc1, bus = b70, p_mw = 1104, vm_pu = 1.0, sn_mva = 1181.2, controllable = True)
@@ -377,3 +364,6 @@ g25 = pp.create_gen(netc1, bus = b92, p_mw = 0, vm_pu = 1.0, sn_mva = 70, contro
 #%% Fluxo de Potência
 
 fp = pp.runpp(netc1) #Execução do fluxo
+
+
+
